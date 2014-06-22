@@ -1,0 +1,40 @@
+<application> 
+         <name>Test</name> //this can be anything, just a symbolic name 
+	
+	 <module> 
+		<name>yarpdev</name> 
+		<parameters>--device test_grabber --name /cam/right</parameters> 
+		<node>localhost</node> 
+	</module> 
+
+	<module> 
+		<name>yarpdev</name> 
+		<parameters>--device test_grabber --name /cam/left</parameters> 
+		<node>localhost</node> 
+	</module> 
+	
+	<module> 
+		<name>yarpview</name>
+		<parameters>--name /view/right</parameters>
+		<node>localhost</node>
+	</module> 
+
+	<module> 
+		<name>yarpview</name>
+		<parameters>--name /view/left</parameters>
+		<node>localhost</node>
+	</module> 
+	
+	<connection> 
+		<from>/cam/right</from> 
+		<to>/view/right</to> 
+		<protocol>udp</protocol> 
+	</connection> 
+
+	<connection> 
+		<from>/cam/left</from> 
+		<to>/view/left</to> 
+		<protocol>udp</protocol> 
+	</connection> 
+	
+</application>

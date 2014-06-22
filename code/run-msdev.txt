@@ -1,0 +1,1 @@
+devenv hello.sln /build Debug /project INSTALL
