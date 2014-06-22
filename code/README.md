@@ -1,4 +1,0 @@
-Teaching
-========
-
-Teaching material
