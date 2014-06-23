@@ -11,19 +11,6 @@ run-time checking of port usage to catch mistakes.
 using namespace yarp::os;
 int main(int argc, char *argv[]) {
     Network yarp;
-    RpcServer port;
-    port.open("/server");
-    while (true) {
-        printf("Waiting for a message...\n");
-        Bottle cmd;
-        Bottle response;
-        port.read(cmd,true);
-        printf("Got message: %s\n", cmd.toString().c_str());
-        response.addString("you");
-        response.addString("said");
-        response.append(cmd);
-        printf("Sending reply: %s\n", response.toString().c_str());
-        port.reply(response);
-    }
+
 }
 

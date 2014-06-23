@@ -10,7 +10,8 @@ using namespace yarp::os;
 
 int main(int argc, char *argv[]) {
     Network yarp;
-    BufferedPort<Bottle> inPort;
+    
+	// BufferedPort<Bottle> inPort;
 
     ResourceFinder parameters;
     parameters.configure(argc, argv);
@@ -30,16 +31,7 @@ int main(int argc, char *argv[]) {
     inPort.open(portname.c_str());
 
     while (true) {
-        Bottle *message=inPort.read();
-        if (message==0)
-            continue;
 
-        int counter=message->get(0).asInt();
-        string msg=message->get(1).asString().c_str();
-
-        printf("Received: %d %s\n", counter, msg.c_str());
-
-        Time::delay(delay/1000.0);
     }
     return 0;
 }

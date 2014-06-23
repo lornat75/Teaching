@@ -15,27 +15,4 @@ using namespace yarp::os;
 int main(int argc, char *argv[]) {
     Network yarp;
 
-    RpcClient port;
-    port.open("/client");
-    int ct = 0;
-    while (true)
-    {
-        if (port.getOutputCount()==0) 
-        {
-            printf("Trying to connect to %s\n", "/server");
-            yarp.connect("/client", "/server");
-        } 
-        else
-        {
-            Bottle cmd;
-            cmd.addString("COUNT");
-            cmd.addInt(ct);
-            ct++;
-            printf("Sending message... %s\n", cmd.toString().c_str());
-            Bottle response;
-            port.write(cmd,response);
-            printf("Got response: %s\n", response.toString().c_str());
-        }
-        Time::delay(1);
-    }
 }
