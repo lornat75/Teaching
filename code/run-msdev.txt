@@ -1,1 +1,4 @@
 devenv hello.sln /build Debug /project INSTALL
+
+compile with cmake:
+cmake --build ./ --target INSTALL
