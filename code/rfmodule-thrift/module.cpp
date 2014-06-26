@@ -4,15 +4,24 @@
 #include <yarp/os/Network.h>
 #include <yarp/os/Semaphore.h>
 
+#include <map>
+
 #include "Memory.h"
 
 using namespace std;
 using namespace yarp::os;
 
+typedef std::map<std::string, std::string> DataBase;
+typedef DataBase::const_iterator DataBaseConstIterator;
+typedef DataBase::iterator DataBaseIterator;
+
 class MyModule: public Memory, public RFModule 
 {
     RpcServer handlerPort; //a port to handle messages
     // Semaphore wait;
+
+    DataBase db;
+
     int count;
 public:
 
@@ -72,11 +81,13 @@ public:
     std::string get_answer(const std::string& k)
     {
         cout<<"You asked: "<< k <<"\n";
-        return string("Reply");
+
+        return db[k];
     }
 
     bool push(const std::string& k, const std::string& v)
     {
+        db[k]=v;
         cout<<"You pushed: "<< k <<" "<<v<<"\n";
         return true;
     }
@@ -84,12 +95,21 @@ public:
     bool show_list()
     {
         cout<<"Showing list \n";
+        DataBaseIterator it = db.begin();
+        while(it !=db.end())
+        {
+            cout<< it->first << ", " << it->second << std::endl;
+            
+            it++;
+        }
+
         return true;
     }
 
     bool clear()
     {
         cout<<"Clearing memory \n";
+        db.clear();
         return true;
     }
 };

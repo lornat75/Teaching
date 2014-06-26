@@ -14,7 +14,11 @@ include_directories(${YARP_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR})
 add_executable(module module.cpp Memory.cpp)
 target_link_libraries(module ${YARP_LIBRARIES})
 
+add_executable(moduleClient moduleClient.cpp Memory.cpp)
+target_link_libraries(moduleClient ${YARP_LIBRARIES})
+
 install(TARGETS module  RUNTIME DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/../bin)
+install(TARGETS moduleClient RUNTIME DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/../bin)
 
 
 
