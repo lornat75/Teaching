@@ -2,9 +2,9 @@ This repository contains various tutorials used to teach programming with YARP a
 
 The organization is the following.
 
-* Code directory:
+### Code directory
 
-Contains the complete code. To compile just go in the source directory of an individual tutorial and run cmake.
+Contains all the code and working examples. To compile just go in the source directory of an individual tutorial and run cmake.
 
 E.g. in Linux:
 
@@ -20,7 +20,7 @@ cmake --build ./ --target INSTALL
 
 Notice that binaries for all tutorials will be installed in the directory bin.
 
-* Code-templates
+### Code-templates
 
 This folder contains the same tutorials, with partially incompete files. It is used as starting point for students to follow and complete the tutorials during classes.
 
