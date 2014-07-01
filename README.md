@@ -22,7 +22,7 @@ In windows with Visual Studio you can compile at the command line using the foll
 cmake --build ./ --target INSTALL
 ```
 
-Notice that binaries for all tutorials will be installed in the directory bin.
+**Note**: binaries for all tutorials will be installed in the directory *bin*.
 
 ### Code-templates
 
