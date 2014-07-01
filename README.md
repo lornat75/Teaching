@@ -8,15 +8,19 @@ Contains all the code and working examples. To compile just go in the source dir
 
 E.g. in Linux:
 
+```
 cd producer-consumer
 mkdir build
 cmake ../
 make 
 make install
+```
 
 In windows with Visual Studio you can compile at the command line using the following commands:
 
+```
 cmake --build ./ --target INSTALL
+```
 
 Notice that binaries for all tutorials will be installed in the directory bin.
 
