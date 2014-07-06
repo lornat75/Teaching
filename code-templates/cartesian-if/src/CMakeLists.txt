@@ -1,0 +1,20 @@
+cmake_minimum_required(VERSION 2.8)
+set(PROJECTNAME cartesian-if)
+project(${PROJECTNAME})
+
+find_package(YARP)
+find_package(ICUB)
+find_package(ICUBcontrib)
+list(APPEND CMAKE_MODULE_PATH ${YARP_MODULE_PATH})
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ICUB_MODULE_PATH})
+list(APPEND CMAKE_MODULE_PATH ${ICUBCONTRIB_MODULE_PATH})
+include(ICUBcontribHelpers)
+include(ICUBcontribOptions)
+icubcontrib_set_default_prefix()
+
+include_directories(${ICUB_INCLUDE_DIRS} ${YARP_INCLUDE_DIRS})
+add_executable(${PROJECTNAME} main.cpp)
+target_link_libraries(${PROJECTNAME} icubmod ${YARP_LIBRARIES})
+install(TARGETS ${PROJECTNAME} DESTINATION bin)
+icubcontrib_add_uninstall_target()
+

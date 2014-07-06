@@ -1,0 +1,20 @@
+<application>
+
+  <name>System</name>
+
+  <module>
+      <name>iCub_SIM</name>
+      <node>localhost</node>
+      <tag>simulator</tag>
+  </module>
+
+  <module>
+      <name>iKinGazeCtrl</name>
+      <parameters>--from configSim.ini</parameters>
+      <node>localhost</node>
+      <tag>controller</tag>
+  </module>
+
+ </application>
+
+

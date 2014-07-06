@@ -1,0 +1,18 @@
+<application>
+
+  <name>Cartesian Interface Tutorial</name>
+
+  <dependencies>
+      <port>/icubSim/cartesianController/left_arm/state:o</port>
+  </dependencies>
+
+  <module>
+      <name>cartesian-if</name>
+      <node>localhost</node>
+      <stdio>localhost</stdio>
+      <tag>client</tag>
+  </module>
+
+</application>
+
+
