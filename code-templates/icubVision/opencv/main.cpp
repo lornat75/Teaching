@@ -32,15 +32,6 @@ public:
         return 0.1; //module periodicity (seconds)
     }
 
-    cv::Mat blueFilter(const cv::Mat& src)
-    {
-        assert(src.type() == CV_8UC3);
-
-        cv::Mat blueOnly;
-        cv::inRange(src, cv::Scalar(0, 0, 0), cv::Scalar(0, 0, 255), blueOnly);
-
-        return blueOnly;
-    }
 
     bool updateModule()
     {
@@ -49,28 +40,7 @@ public:
             cv::Mat orig = (IplImage *) imageIn.read(true)->getIplImage();
             ImageOf<PixelMono> &outImg = imageOut.prepare();
 
-            cv::Mat blueOnly = blueFilter(orig);
-            
-            float sumx=0, sumy=0;
-            float num_pixel = 0;
-            for(int x=0; x<blueOnly.cols; x++) {
-                for(int y=0; y<blueOnly.rows; y++) {
-                    int val = blueOnly.at<uchar>(y,x);
-                    if( val >= 50) {
-                        sumx += x;
-                        sumy += y;
-                        num_pixel++;
-                    }
-                }
-            }
-            cv::Point p(sumx/num_pixel, sumy/num_pixel);
-            //cout << cv::Mat(p) << endl;
-
-            cv::Moments m = cv::moments(blueOnly, false);
-            cv::Point p1(m.m10/m.m00, m.m01/m.m00);
-            //cout << cv::Mat(p1) << endl;
-
-            cv::circle(blueOnly, p, 5, cv::Scalar(0,0,0), -1);
+            //fill in the code
 
             Bottle &target=targetPort.prepare();
             target.clear();
@@ -89,10 +59,10 @@ public:
                 target.addInt(1);
             }
 
-            IplImage tmp = blueOnly;
-            outImg.resize(tmp.width, tmp.height);
-            cvCopyImage( &tmp, (IplImage *) outImg.getIplImage());
-            imageOut.write();
+            //IplImage tmp = blueOnly;
+            //outImg.resize(tmp.width, tmp.height);
+            //cvCopyImage( &tmp, (IplImage *) outImg.getIplImage());
+            //imageOut.write();
 
             targetPort.write();
         }
