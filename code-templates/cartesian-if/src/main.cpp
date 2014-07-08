@@ -62,7 +62,7 @@ public:
         //     (launch simCartesianControl)
         //     
         // 3 - the cartesian solver for the left arm is running too
-        //     (launch iKinCartesianSolver --context simCartesianControl/conf --part left_arm)
+        //     (launch iKinCartesianSolver --context simCartesianControl --part left_arm)
         //
 
         // FILL IN THE CODE
