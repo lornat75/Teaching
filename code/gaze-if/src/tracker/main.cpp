@@ -162,7 +162,7 @@ int main(int argc, char *argv[])
     rf.setVerbose(true);
     rf.setDefault("name","tracker");
     rf.setDefault("period","0.02");
-    rf.configure("ICUB_ROOT",argc,argv);
+    rf.configure(argc,argv);
 
     CtrlModule mod;
     return mod.runModule(rf);
