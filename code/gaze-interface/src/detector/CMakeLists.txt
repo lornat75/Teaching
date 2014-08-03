@@ -8,5 +8,5 @@ list(APPEND CMAKE_MODULE_PATH ${YARP_MODULE_PATH})
 include_directories(${YARP_INCLUDE_DIRS})
 add_executable(${PROJECTNAME} objectDetector.cpp Detector.cpp Detector.h)
 target_link_libraries(${PROJECTNAME} ${YARP_LIBRARIES})
-install(TARGETS ${PROJECTNAME} DESTINATION bin)
+install(TARGETS ${PROJECTNAME} RUNTIME DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/../../bin)
 

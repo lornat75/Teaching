@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
-set(PROJECTNAME tracker)
+set(PROJECTNAME cartesian-interface)
 project(${PROJECTNAME})
 
 find_package(YARP)
@@ -10,5 +10,4 @@ list(APPEND CMAKE_MODULE_PATH ${ICUB_MODULE_PATH})
 include_directories(${ICUB_INCLUDE_DIRS} ${YARP_INCLUDE_DIRS})
 add_executable(${PROJECTNAME} main.cpp)
 target_link_libraries(${PROJECTNAME} icubmod ${YARP_LIBRARIES})
-install(TARGETS ${PROJECTNAME} DESTINATION bin)
-
+install(TARGETS ${PROJECTNAME} RUNTIME DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/../bin)
