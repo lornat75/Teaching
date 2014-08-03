@@ -7,7 +7,7 @@
   </dependencies>
 
   <module>
-      <name>cartesian-if</name>
+      <name>cartesian-interface</name>
       <node>localhost</node>
       <stdio>localhost</stdio>
       <tag>client</tag>
