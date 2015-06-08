@@ -29,9 +29,7 @@ int main() {
     robotHead.view(pos);
     robotHead.view(vel);
     robotHead.view(enc);
-	
-	ivel->setVelocityMode();
-	
+
     if (pos==NULL || vel==NULL || enc==NULL) 
     {
         printf("Cannot get interface to robot head\n");
@@ -42,6 +40,9 @@ int main() {
     pos->getAxes(&jnts);
     Vector setpoints;
     setpoints.resize(jnts);
+
+    ivel->setVelocityMode();
+
     while (1) 
     { // repeat forever
         Bottle *target = targetPort.read(); // read a target

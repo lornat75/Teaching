@@ -19,7 +19,7 @@ make install
 In windows with Visual Studio you can compile at the command line using the following commands:
 
 ```
-cmake --build ./ --target INSTALL
+cmake --build ./ --target INSTALL --config RELEASE
 ```
 
 **Note**: binaries for all tutorials will be installed in the directory *bin*.
