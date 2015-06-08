@@ -40,7 +40,7 @@ int main() {
     Vector setpoints;
     setpoints.resize(jnts);
 
-    vel->setVelocityMode();
+    ivel->setVelocityMode();
     while (1) 
     { // repeat forever
         Bottle *target = targetPort.read(); // read a target
