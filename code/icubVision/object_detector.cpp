@@ -10,19 +10,19 @@ int main() {
 	Network yarp;
 	
 	BufferedPort<ImageOf<PixelRgb> > inPort;  // make a port for reading images
-    BufferedPort<ImageOf<PixelRgb> > outPort;
-    BufferedPort<Bottle> targetPort;
+        BufferedPort<ImageOf<PixelRgb> > outPort;
+        BufferedPort<Bottle> targetPort;
 	
-	inPort.open("/objectDetector/image/in");  // give the port a name
-    outPort.open("/objectDetector/image/out");
-    targetPort.open("/objectDetector/target");
+	inPort.open("/detector/image/in");  // give the port a name
+        outPort.open("/detector/image/out");
+        targetPort.open("/detector/target");
 		  
 	while(true)
 	{
-		ImageOf<PixelRgb> *image = inPort.read();  // read an image
+               ImageOf<PixelRgb> *image = inPort.read();  // read an image
 	
-		if (image==NULL)
-			continue;
+               if (image==NULL)
+                     continue;
 
         // check we actually got something
         ImageOf<PixelRgb> &outImage = outPort.prepare(); //get an output image
@@ -38,10 +38,10 @@ int main() {
                 // very simple test for red
                 // make sure red level exceeds blue and green by a factor of 2
                 // plus some threshold
-				int v=pixel.b-pixel.r-pixel.g;
+                int v=pixel.b-pixel.r-pixel.g;
 				
-				if (v>40)  //magic number
-				{
+                if (v>30)  //magic number
+                {
                     // there's a blue pixel at (x,y)!
                     // let's find the average location of these pixels
 
@@ -78,13 +78,10 @@ int main() {
         else
             target.addInt(0);    
 
-		//target.addInt(image->width());
-		//target.addInt(image->height());
-		
         targetPort.write();
 
         outPort.write();
-    }
+        }
 	return 0;
 }
 
