@@ -1,10 +1,9 @@
 <application>
 
-  <name>Gaze Interface Tutorial</name>
+  <name>icub-vision</name>
 
   <dependencies>
       <port>/icubSim/cam/left</port>
-      <port>/iKinGazeCtrl/rpc</port>
   </dependencies>
 
   <module>
