@@ -1,3 +1,0 @@
-/home/icub/dev/Teaching/code/icubVision/build/CMakeFiles/lookAtLocation.dir
-/home/icub/dev/Teaching/code/icubVision/build/CMakeFiles/move_ball.dir
-/home/icub/dev/Teaching/code/icubVision/build/CMakeFiles/object_detector.dir
