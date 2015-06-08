@@ -9,8 +9,8 @@ int main() {
     Network yarp; // set up yarp
     BufferedPort<Bottle> targetPort;
     targetPort.open("/mover/target/in");
-    //Network::connect("/objectDetector/target","/mover/target/in");
-    Network::connect("/tracker/target:o","/mover/target/in");
+    // Network::connect("/objectDetector/target","/mover/target/in");
+    // Network::connect("/tracker/target:o","/mover/target/in");
     Property options;
     options.put("device", "remote_controlboard");
     options.put("local", "/mover/motor/client");
@@ -29,6 +29,9 @@ int main() {
     robotHead.view(pos);
     robotHead.view(vel);
     robotHead.view(enc);
+	
+	ivel->setVelocityMode();
+	
     if (pos==NULL || vel==NULL || enc==NULL) 
     {
         printf("Cannot get interface to robot head\n");
