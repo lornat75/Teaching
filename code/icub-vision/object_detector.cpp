@@ -7,27 +7,27 @@ using namespace yarp::os;
 using namespace yarp::sig;
 
 int main() {
-	Network yarp;
-	
-	BufferedPort<ImageOf<PixelRgb> > inPort;  // make a port for reading images
-        BufferedPort<ImageOf<PixelRgb> > outPort;
-        BufferedPort<Bottle> targetPort;
-	
-	inPort.open("/detector/image/in");  // give the port a name
-        outPort.open("/detector/image/out");
-        targetPort.open("/detector/target");
-		  
-	while(true)
-	{
-               ImageOf<PixelRgb> *image = inPort.read();  // read an image
-	
-               if (image==NULL)
-                     continue;
+    Network yarp;
+
+    BufferedPort<ImageOf<PixelRgb> > inPort;  // make a port for reading images
+    BufferedPort<ImageOf<PixelRgb> > outPort;
+    BufferedPort<Bottle> targetPort;
+
+    inPort.open("/detector/image/in");  // give the port a name
+    outPort.open("/detector/image/out");
+    targetPort.open("/detector/target");
+
+    while(true)
+    {
+        ImageOf<PixelRgb> *image = inPort.read();  // read an image
+
+        if (image==NULL)
+            continue;
 
         // check we actually got something
         ImageOf<PixelRgb> &outImage = outPort.prepare(); //get an output image
         outImage.resize(image->width(), image->height());
-		
+
         //printf("We got an image of size %dx%d\n", image->width(), image->height());
         double xMean = 0;
         double yMean = 0;
@@ -39,7 +39,7 @@ int main() {
                 // make sure red level exceeds blue and green by a factor of 2
                 // plus some threshold
                 int v=pixel.b-pixel.r-pixel.g;
-				
+
                 if (v>30)  //magic number
                 {
                     // there's a blue pixel at (x,y)!
@@ -69,7 +69,7 @@ int main() {
         target.clear();
         target.addDouble(xMean);
         target.addDouble(yMean);
-		
+
         //threshold on the size of the object we found
         if (count>(image->width()/20)*(image->height()/20))
         {
@@ -81,7 +81,7 @@ int main() {
         targetPort.write();
 
         outPort.write();
-        }
-	return 0;
+    }
+    return 0;
 }
 
