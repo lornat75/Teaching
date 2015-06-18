@@ -31,12 +31,11 @@
       <tag>objectViewer</tag>
   </module>
   
-  <module>
-      <name>yarp</name>
-      <parameters>read /read</parameters>
+ <module>
+      <name>yarpview</name>
+      <parameters>--name /viewer2 --x 10 --y 100</parameters>
       <node>localhost</node>
-      <stdio>localhost</stdio>
-      <tag>objectReader</tag>
+      <tag>objectViewer2</tag>
   </module>
 
   <connection>
@@ -47,21 +46,22 @@
 
   <connection>
       <from>/icubSim/cam/left</from>
-      <to>/detector/image/in</to>
+      <to>/objectDetector/image/in</to>
       <protocol>udp</protocol>
   </connection>
 
   <connection>
-    <from>/detector/target</from>
+      <from>/objectDetector/image/out</from>
+      <to>/viewer2</to>
+      <protocol>udp</protocol>
+  </connection>
+
+  <connection>
+    <from>/objectDetector/target</from>
     <to>/tracker/target:i</to>
     <protocol>tcp</protocol>
   </connection>
   
-  <connection>
-    <from>/detector/target</from>
-    <to>/read</to>
-    <protocol>tcp</protocol>
-  </connection>
 
 </application>
 
