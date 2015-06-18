@@ -32,8 +32,10 @@ int main()
    }
 
    cout<<"Starting sender\n";
+
    while(true)
    {
+      //read and print pose
       Pose p;
       pose.read(p);
 
@@ -41,11 +43,16 @@ int main()
       cout<<p.linear_velocity<<" " << p.angular_velocity << "\n";
       cout<<"==========\n";
 
+      // make a circle
       Twist t;
       t.linear.x=1.0;
       t.linear.y=0.0;
       t.linear.z=0.0;
 
+      t.angular.x=0.0;
+      t.angular.y=0.0;
+      t.angular.z=1;
+      
       cmd.write(t);
 
       yarp::os::Time::delay(0.1);
