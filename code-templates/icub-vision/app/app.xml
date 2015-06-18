@@ -58,7 +58,7 @@
 
   <connection>
     <from>/objectDetector/target</from>
-    <to>/tracker/target:i</to>
+    <to>/mover/target/in</to>
     <protocol>tcp</protocol>
   </connection>
   
