@@ -9,33 +9,28 @@
   <module>
       <name>move_ball</name>
       <node>localhost</node>
-      <tag>objectMover</tag>
   </module>
 
   <module>
       <name>object_detector</name>
       <node>localhost</node>
-      <tag>objectDetector</tag>
   </module>
 
   <module>
       <name>lookAtLocation</name>
       <node>localhost</node>
-      <tag>objectTracker</tag>
   </module>  
 
   <module>
       <name>yarpview</name>
       <parameters>--name /viewer --x 10 --y 10</parameters>
       <node>localhost</node>
-      <tag>objectViewer</tag>
   </module>
   
  <module>
       <name>yarpview</name>
-      <parameters>--name /viewer2 --x 10 --y 100</parameters>
+      <parameters>--name /viewer2 --x 400 --y 10</parameters>
       <node>localhost</node>
-      <tag>objectViewer2</tag>
   </module>
 
   <connection>
@@ -61,8 +56,6 @@
     <to>/mover/target/in</to>
     <protocol>tcp</protocol>
   </connection>
-  
-
 </application>
 
 

@@ -8,12 +8,12 @@ using namespace yarp::dev;
 int main() {
     Network yarp; // set up yarp
     BufferedPort<Bottle> targetPort;
-    targetPort.open("/tracker/target:i");
+    targetPort.open("/mover/target/in");
     //Network::connect("/objectDetector/target","/mover/target/in");
     //Network::connect("/tracker/target:o","/tracker/target:i");
     Property options;
     options.put("device", "remote_controlboard");
-    options.put("local", "/tracker/motor/client");
+    options.put("local", "/mover/motor/client");
     options.put("remote", "/icubSim/head");
     PolyDriver robotHead(options);
 
@@ -57,8 +57,8 @@ int main() {
             double conf = target->get(2).asInt();
             x -= 320/2;
             y -= 240/2;
-            double vx = x*0.1;
-            double vy = -y*0.1;
+            double vx = x*0.7;
+            double vy = -y*0.7;
             /* prepare command */
             for (int i=0; i<jnts; i++) 
             {
