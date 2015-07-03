@@ -2,7 +2,7 @@
 #include <yarp/os/all.h>
 
 
-int main(int argc, char *argv) 
+int main(int argc, char *argv[]) 
 {
 
 }
