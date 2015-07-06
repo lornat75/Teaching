@@ -5,6 +5,10 @@
 //
 // Author: Ugo Pattacini - <ugo.pattacini@iit.it>
 
+#include <cstdio>
+
+#include <gsl/gsl_math.h>
+
 #include <yarp/os/Network.h>
 #include <yarp/os/RFModule.h>
 #include <yarp/os/RateThread.h>
@@ -16,16 +20,11 @@
 #include <yarp/dev/CartesianControl.h>
 #include <yarp/dev/PolyDriver.h>
 
-#include <gsl/gsl_math.h>
-
-#include <stdio.h>
-
 #define CTRL_THREAD_PER     0.02    // [s]
 #define PRINT_STATUS_PER    1.0     // [s]
 #define MAX_TORSO_PITCH     30.0    // [deg]
 
-YARP_DECLARE_DEVICES(icubmod)
-
+using namespace std;
 using namespace yarp::os;
 using namespace yarp::dev;
 using namespace yarp::sig;
@@ -60,7 +59,7 @@ public:
         //
         // 2 - the cartesian server is running
         //     (launch simCartesianControl)
-        //     
+        //
         // 3 - the cartesian solver for the left arm is running too
         //     (launch iKinCartesianSolver --context simCartesianControl --part left_arm)
         //
@@ -93,24 +92,24 @@ public:
     }
 
     virtual void threadRelease()
-    {    
+    {
         // FILL IN THE CODE
     }
 
     void generateTarget()
-    {   
+    {
         // translational target part: a circular trajectory
         // in the yz plane centered in [-0.3,-0.1,0.1] with radius=0.1 m
         // and frequency 0.1 Hz
         xd[0]=-0.3;
         xd[1]=-0.1+0.1*cos(2.0*M_PI*0.1*(t-t0));
-        xd[2]=+0.1+0.1*sin(2.0*M_PI*0.1*(t-t0));            
-                 
+        xd[2]=+0.1+0.1*sin(2.0*M_PI*0.1*(t-t0));
+
         // we keep the orientation of the left arm constant:
         // we want the middle finger to point forward (end-effector x-axis)
         // with the palm turned down (end-effector y-axis points leftward);
         // to achieve that it is enough to rotate the root frame of pi around z-axis
-        
+
         // FILL IN THE CODE
     }
 };
@@ -152,10 +151,7 @@ public:
 
 
 int main()
-{   
-    // we need to initialize the drivers list 
-    YARP_REGISTER_DEVICES(icubmod)
-
+{
     Network yarp;
     if (!yarp.checkNetwork())
         return -1;
@@ -165,6 +161,3 @@ int main()
     ResourceFinder rf;
     return mod.runModule(rf);
 }
-
-
-

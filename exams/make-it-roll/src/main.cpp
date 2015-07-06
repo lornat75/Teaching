@@ -1,5 +1,5 @@
 #include <string>
-#include <stdio.h>
+#include <cstdio>
 
 #include <yarp/os/all.h>
 #include <yarp/dev/all.h>
@@ -27,7 +27,7 @@ protected:
     BufferedPort<ImageOf<PixelRgb>> imgLPortIn,imgRPortIn;
     Port imgLPortOut,imgRPortOut;
     RpcServer rpcPort;
-    
+
     Mutex mutex;
     Vector cogL,cogR;
     bool okL,okR;
@@ -236,14 +236,14 @@ public:
         imgLPortOut.write(*imgL);
         imgRPortOut.write(*imgR);
 
-        return true; 
+        return true;
     }
 };
 
 
 /***************************************************/
 int main()
-{   
+{
     Network yarp;
     if (!yarp.checkNetwork())
         return -1;
@@ -252,6 +252,3 @@ int main()
     ResourceFinder rf;
     return mod.runModule(rf);
 }
-
-
-

@@ -17,8 +17,6 @@
 #include <yarp/dev/GazeControl.h>
 #include <yarp/dev/PolyDriver.h>
 
-YARP_DECLARE_DEVICES(icubmod)
-
 using namespace std;
 using namespace yarp::os;
 using namespace yarp::dev;
@@ -99,7 +97,7 @@ public:
     }
 
     void threadRelease()
-    {    
+    {
         // we require an immediate stop
         // before closing the client for safety reason
         igaze->stopControl();
@@ -151,12 +149,9 @@ public:
 
 int main(int argc, char *argv[])
 {
-    // we need to initialize the drivers list 
-    YARP_REGISTER_DEVICES(icubmod)
-
     Network yarp;
     if (!yarp.checkNetwork())
-        return -1;    
+        return -1;
 
     ResourceFinder rf;
     rf.setVerbose(true);
@@ -167,6 +162,3 @@ int main(int argc, char *argv[])
     CtrlModule mod;
     return mod.runModule(rf);
 }
-
-
-

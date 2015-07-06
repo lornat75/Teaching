@@ -9,5 +9,5 @@ list(APPEND CMAKE_MODULE_PATH ${ICUB_MODULE_PATH})
 
 include_directories(${ICUB_INCLUDE_DIRS} ${YARP_INCLUDE_DIRS})
 add_executable(${PROJECTNAME} main.cpp)
-target_link_libraries(${PROJECTNAME} icubmod ${YARP_LIBRARIES})
+target_link_libraries(${PROJECTNAME} ${YARP_LIBRARIES})
 install(TARGETS ${PROJECTNAME} RUNTIME DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/../bin)
