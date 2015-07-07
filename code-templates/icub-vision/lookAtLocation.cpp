@@ -41,7 +41,7 @@ int main() {
     Vector setpoints;
     setpoints.resize(jnts);
 
-    ivel->setVelocityMode();
+    vel->setVelocityMode();
 
     while (1) 
     { // repeat forever
