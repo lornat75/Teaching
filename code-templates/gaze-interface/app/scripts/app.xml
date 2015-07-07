@@ -10,34 +10,29 @@
   <module>
       <name>mover</name>
       <node>localhost</node>
-      <tag>objectMover</tag>
   </module>
 
   <module>
       <name>detector</name>
       <node>localhost</node>
-      <tag>objectDetector</tag>
   </module>
 
   <module>
       <name>tracker</name>
       <node>localhost</node>
-      <tag>objectTracker</tag>
-  </module>  
+  </module>
 
   <module>
       <name>yarpview</name>
       <parameters>--name /viewer --x 10 --y 10</parameters>
       <node>localhost</node>
-      <tag>objectViewer</tag>
   </module>
-  
+
   <module>
       <name>yarp</name>
       <parameters>read /read</parameters>
       <node>localhost</node>
       <stdio>localhost</stdio>
-      <tag>objectReader</tag>
   </module>
 
   <connection>
@@ -57,7 +52,7 @@
     <to>/tracker/target:i</to>
     <protocol>tcp</protocol>
   </connection>
-  
+
   <connection>
     <from>/detector/target</from>
     <to>/read</to>
@@ -65,5 +60,3 @@
   </connection>
 
 </application>
-
-
