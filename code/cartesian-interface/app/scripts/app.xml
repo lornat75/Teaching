@@ -8,8 +8,8 @@
 
   <module>
       <name>cartesian-interface</name>
-      <node>localhost</node>
-      <stdio>localhost</stdio>
+      <node>yarpnode</node>
+      <stdio>yarpnode</stdio>
   </module>
 
 </application>

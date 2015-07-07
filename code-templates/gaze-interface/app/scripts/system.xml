@@ -4,13 +4,13 @@
 
   <module>
       <name>iCub_SIM</name>
-      <node>localhost</node>
+      <node>yarpnode</node>
   </module>
 
   <module>
       <name>iKinGazeCtrl</name>
       <parameters>--from configSim.ini</parameters>
-      <node>localhost</node>
+      <node>yarpnode</node>
   </module>
 
  </application>
