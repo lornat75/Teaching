@@ -9,36 +9,30 @@
   <module>
       <name>move_ball</name>
       <node>localhost</node>
-      <tag>objectMover</tag>
   </module>
 
   <module>
       <name>object_detector</name>
       <node>localhost</node>
-      <tag>objectDetector</tag>
   </module>
 
   <module>
       <name>lookAtLocation</name>
       <node>localhost</node>
-      <tag>objectTracker</tag>
   </module>  
 
   <module>
       <name>yarpview</name>
       <parameters>--name /viewer --x 10 --y 10</parameters>
       <node>localhost</node>
-      <tag>objectViewer</tag>
-  </module>
-  
-  <module>
-      <name>yarp</name>
-      <parameters>read /read</parameters>
-      <node>localhost</node>
-      <stdio>localhost</stdio>
-      <tag>objectReader</tag>
   </module>
 
+  <module>
+      <name>yarpview</name>
+      <parameters>--name /target_viewer --x 310 --y 310</parameters>
+      <node>localhost</node>
+  </module>
+  
   <connection>
       <from>/icubSim/cam/left</from>
       <to>/viewer</to>
@@ -47,21 +41,22 @@
 
   <connection>
       <from>/icubSim/cam/left</from>
-      <to>/objectDetector/image/in</to>
+      <to>/objectDetector/image:i</to>
       <protocol>udp</protocol>
   </connection>
 
   <connection>
-    <from>/objectDetector/target</from>
-    <to>/mover/target/in</to>
+    <from>/objectDetector/target:o</from>
+    <to>/mover/target:i</to>
     <protocol>tcp</protocol>
   </connection>
-  
+
   <connection>
-    <from>/objectDetector/target</from>
-    <to>/read</to>
-    <protocol>tcp</protocol>
+    <from>/objectDetector/image:o</from>
+    <to>/target_viewer</to>
+    <protocol>udp</protocol>
   </connection>
+
 
 </application>
 

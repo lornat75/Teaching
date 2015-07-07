@@ -13,9 +13,9 @@ int main() {
     BufferedPort<ImageOf<PixelRgb> > outPort;
     BufferedPort<Bottle> targetPort;
 
-    inPort.open("/objectDetector/image/in");  // give the port a name
-    outPort.open("/objectDetector/image/out");
-    targetPort.open("/objectDetector/target");
+    inPort.open("/objectDetector/image:i");  // give the port a name
+    outPort.open("/objectDetector/image:o");
+    targetPort.open("/objectDetector/target:o");
 
     while(true)
     {

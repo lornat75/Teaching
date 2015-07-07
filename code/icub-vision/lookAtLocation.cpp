@@ -8,7 +8,7 @@ using namespace yarp::dev;
 int main() {
     Network yarp; // set up yarp
     BufferedPort<Bottle> targetPort;
-    targetPort.open("/mover/target/in");
+    targetPort.open("/mover/target:i");
     //Network::connect("/objectDetector/target","/mover/target/in");
     //Network::connect("/tracker/target:o","/tracker/target:i");
     Property options;
