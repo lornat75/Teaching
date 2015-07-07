@@ -47,18 +47,18 @@
 
   <connection>
       <from>/icubSim/cam/left</from>
-      <to>/detector/image/in</to>
+      <to>/objectDetector/image/in</to>
       <protocol>udp</protocol>
   </connection>
 
   <connection>
-    <from>/detector/target</from>
-    <to>/tracker/target:i</to>
+    <from>/objectDetector/target</from>
+    <to>/mover/target/in</to>
     <protocol>tcp</protocol>
   </connection>
   
   <connection>
-    <from>/detector/target</from>
+    <from>/objectDetector/target</from>
     <to>/read</to>
     <protocol>tcp</protocol>
   </connection>
