@@ -4,13 +4,15 @@
 
   <module>
       <name>iCub_SIM</name>
-      <node>yarpnode</node>
+      <node>localhost</node>
+      <display>--minimized</display>
   </module>
 
   <module>
       <name>iKinGazeCtrl</name>
       <parameters>--from configSim.ini</parameters>
-      <node>yarpnode</node>
+      <node>localhost</node>
+      <display>--minimized</display>
   </module>
 
  </application>

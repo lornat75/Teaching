@@ -9,30 +9,32 @@
 
   <module>
       <name>mover</name>
-      <node>yarpnode</node>
+      <node>localhost</node>
+      <display>--minimized</display>
   </module>
 
   <module>
       <name>detector</name>
-      <node>yarpnode</node>
+      <node>localhost</node>
+      <display>--minimized</display>
   </module>
 
   <module>
       <name>tracker</name>
-      <node>yarpnode</node>
+      <node>localhost</node>
+      <display>--minimized</display>
   </module>
 
   <module>
       <name>yarpview</name>
       <parameters>--name /viewer --x 10 --y 10</parameters>
-      <node>yarpnode</node>
+      <node>localhost</node>
   </module>
 
   <module>
       <name>yarp</name>
       <parameters>read /read</parameters>
-      <node>yarpnode</node>
-      <stdio>yarpnode</stdio>
+      <node>localhost</node>
   </module>
 
   <connection>

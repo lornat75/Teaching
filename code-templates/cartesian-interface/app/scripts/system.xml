@@ -4,19 +4,22 @@
 
   <module>
       <name>iCub_SIM</name>
-      <node>yarpnode</node>
+      <node>localhost</node>
+      <display>--minimized</display>
   </module>
 
   <module>
       <name>simCartesianControl</name>
       <parameters>--no_legs</parameters>
-      <node>yarpnode</node>
+      <node>localhost</node>
+      <display>--minimized</display>
   </module>
 
   <module>
       <name>iKinCartesianSolver</name>
       <parameters>--context simCartesianControl --part left_arm</parameters>
-      <node>yarpnode</node>
+      <node>localhost</node>
+      <display>--minimized</display>
   </module>
 
 </application>
