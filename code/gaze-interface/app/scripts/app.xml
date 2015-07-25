@@ -10,19 +10,16 @@
   <module>
       <name>mover</name>
       <node>localhost</node>
-      <display>--minimized</display>
   </module>
 
   <module>
       <name>detector</name>
       <node>localhost</node>
-      <display>--minimized</display>
   </module>
 
   <module>
       <name>tracker</name>
       <node>localhost</node>
-      <display>--minimized</display>
   </module>
 
   <module>
