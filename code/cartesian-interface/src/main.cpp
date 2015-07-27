@@ -252,7 +252,7 @@ int main()
 {
     Network yarp;
     if (!yarp.checkNetwork())
-        return -1;
+        return 1;
 
     CtrlModule mod;
 

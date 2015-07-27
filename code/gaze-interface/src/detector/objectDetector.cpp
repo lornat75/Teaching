@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
     if (!module.configure(rf))
     {
         fprintf(stderr, "Error configuring module returning\n");
-        return -1;
+        return 1;
     }
 
 
