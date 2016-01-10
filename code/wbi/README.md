@@ -25,5 +25,5 @@ make
 you can launch it by specifying the configuration files:
 
 ```
-./WBI_example --wbi_config_file ../wbi-config.ini
+./build/WBI_example --wbi_config_file wbi-config.ini
 ```
