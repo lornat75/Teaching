@@ -8,12 +8,11 @@ using namespace yarp::dev;
 int main() {
     Network yarp; // set up yarp
     BufferedPort<Bottle> targetPort;
-    targetPort.open("/mover/target:i");
-    //Network::connect("/objectDetector/target","/mover/target/in");
-    //Network::connect("/tracker/target:o","/tracker/target:i");
+    targetPort.open("/lookAt/target:i");
+
     Property options;
     options.put("device", "remote_controlboard");
-    options.put("local", "/mover/motor/client");
+    options.put("local", "/lookAt/motor/client");
     options.put("remote", "/icubSim/head");
     PolyDriver robotHead(options);
 
@@ -23,26 +22,51 @@ int main() {
         return 1;
     }
     
+    IControlMode *mode;
     IPositionControl *pos;
     IVelocityControl *vel;
     IEncoders *enc;
     robotHead.view(pos);
     robotHead.view(vel);
     robotHead.view(enc);
-    if (pos==NULL || vel==NULL || enc==NULL) 
+    robotHead.view(mode);
+
+    if (pos==NULL || vel==NULL || enc==NULL || mode==NULL) 
     {
         printf("Cannot get interface to robot head\n");
         robotHead.close();
         return 1;
     }
+
     int jnts = 0;
     pos->getAxes(&jnts);
     Vector setpoints;
     setpoints.resize(jnts);
 
-    vel->setVelocityMode();
+    // go to zero
+    // set all joints to position mode
+    for(int j=0;j<jnts;j++)
+       mode->setPositionMode(j);
+
+    setpoints=0.0;
+    // move joints
+    pos->positionMove(setpoints.data());
+    bool done=false;
+    printf("Parking head...");
+    // wait until motion is completed
+    while(!done)
+    {
+	pos->checkMotionDone(&done);
+        printf(".");
+    }
+    printf("\n");
+
+    for(int j=0;j<jnts;j++)
+       mode->setVelocityMode(j);
+    
     while (1) 
-    { // repeat forever
+    { 
+        // repeat forever
         Bottle *target = targetPort.read(); // read a target
         if (target!=NULL) 
         { // check we actually got something

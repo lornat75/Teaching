@@ -17,13 +17,13 @@
   </module>
 
   <module>
-      <name>lookAtLocation</name>
+      <name>look_at</name>
       <node>localhost</node>
   </module>  
 
   <module>
       <name>yarpview</name>
-      <parameters>--name /viewer --x 10 --y 10</parameters>
+      <parameters>--name /viewer/image:i --x 10 --y 10</parameters>
       <node>localhost</node>
   </module>
 
@@ -35,7 +35,7 @@
   
   <connection>
       <from>/icubSim/cam/left</from>
-      <to>/viewer</to>
+      <to>/viewer/image:i</to>
       <protocol>udp</protocol>
   </connection>
 
@@ -47,13 +47,13 @@
 
   <connection>
     <from>/objectDetector/target:o</from>
-    <to>/mover/target:i</to>
+    <to>/lookAt/target:i</to>
     <protocol>tcp</protocol>
   </connection>
 
   <connection>
     <from>/objectDetector/image:o</from>
-    <to>/target_viewer</to>
+    <to>/targetViewer/image:i</to>
     <protocol>udp</protocol>
   </connection>
 

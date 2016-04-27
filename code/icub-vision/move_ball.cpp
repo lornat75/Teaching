@@ -10,8 +10,8 @@ int main() {
 
     yarp::os::Bottle reply;
     Port port;
-    port.open("/move_ball");
-    yarp.connect("/move_ball","/icubSim/world");
+    port.open("/moveBall:o");
+    port.addOutput("/icubSim/world");
 
     Bottle del_all;
     del_all.addString("world");

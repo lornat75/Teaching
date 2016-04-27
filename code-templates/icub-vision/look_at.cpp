@@ -8,12 +8,11 @@ using namespace yarp::dev;
 int main() {
     Network yarp; // set up yarp
     BufferedPort<Bottle> targetPort;
-    targetPort.open("/mover/target/in");
-    // Network::connect("/objectDetector/target","/mover/target/in");
-    // Network::connect("/tracker/target:o","/mover/target/in");
+    targetPort.open("/lookAt/target:i");
+
     Property options;
     options.put("device", "remote_controlboard");
-    options.put("local", "/mover/motor/client");
+    options.put("local", "/lookAt/motor/client");
     options.put("remote", "/icubSim/head");
     PolyDriver robotHead(options);
 
@@ -23,32 +22,35 @@ int main() {
         return 1;
     }
     
+    IControlMode *mode;
     IPositionControl *pos;
     IVelocityControl *vel;
     IEncoders *enc;
     robotHead.view(pos);
     robotHead.view(vel);
     robotHead.view(enc);
+    robotHead.view(mode);
 
-    if (pos==NULL || vel==NULL || enc==NULL) 
+    if (pos==NULL || vel==NULL || enc==NULL || mode==NULL) 
     {
         printf("Cannot get interface to robot head\n");
         robotHead.close();
         return 1;
     }
+
     int jnts = 0;
     pos->getAxes(&jnts);
     Vector setpoints;
     setpoints.resize(jnts);
+    setpoints=0.0; //zero all vetor
 
-    vel->setVelocityMode();
-
+   
     while (1) 
-    { // repeat forever
+    { 
+        // repeat forever
         Bottle *target = targetPort.read(); // read a target
         if (target!=NULL) 
-        { // check we actually got something
-          //move the head
+        {
         }
     }
     return 0;
