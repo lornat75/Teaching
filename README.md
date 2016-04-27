@@ -26,6 +26,6 @@ cmake --build ./ --target INSTALL --config RELEASE
 
 ### Code-templates
 
-This folder contains the same tutorials, with partially incompete files. It is used as starting point for students to follow and complete the tutorials during classes.
+This folder contains the same tutorials, with partially incomplete files. It is used as starting point for students to follow and complete the tutorials during classes.
 
 

@@ -17,8 +17,6 @@
 #include <yarp/dev/GazeControl.h>
 #include <yarp/dev/PolyDriver.h>
 
-YARP_DECLARE_DEVICES(icubmod)
-
 using namespace std;
 using namespace yarp::os;
 using namespace yarp::dev;
@@ -73,7 +71,7 @@ public:
                     Vector px(2);
                     px[0]=pTarget->get(0).asDouble();
                     px[1]=pTarget->get(1).asDouble();
-                    
+
                     // FILL IN THE CODE
                 }
             }
@@ -81,7 +79,7 @@ public:
     }
 
     void threadRelease()
-    {    
+    {
         // FILL IN THE CODE
 
         port.interrupt();
@@ -125,12 +123,9 @@ public:
 
 int main(int argc, char *argv[])
 {
-    // we need to initialize the drivers list 
-    YARP_REGISTER_DEVICES(icubmod)
-
     Network yarp;
     if (!yarp.checkNetwork())
-        return -1;    
+        return 1;
 
     ResourceFinder rf;
     rf.setVerbose(true);
@@ -141,6 +136,3 @@ int main(int argc, char *argv[])
     CtrlModule mod;
     return mod.runModule(rf);
 }
-
-
-

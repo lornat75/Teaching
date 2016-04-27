@@ -1,0 +1,24 @@
+# Copyright: 2012 iCub Facility, Istituto Italiano di Tecnologia
+# Author: Lorenzo Natale
+# CopyPolicy: Released under the terms of the GNU GPL v2.0.
+# 
+
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
+SET(PROJECTNAME module)
+PROJECT(${PROJECTNAME})
+
+find_package(YARP)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${YARP_MODULE_PATH})
+
+include_directories(${YARP_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR})
+add_executable(module module.cpp Calculator.cpp)
+target_link_libraries(module ${YARP_LIBRARIES})
+
+install(TARGETS module  RUNTIME DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/../bin)
+
+
+
+
+
+
+

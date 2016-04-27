@@ -13,9 +13,9 @@ int main() {
     BufferedPort<ImageOf<PixelRgb> > outPort;
     BufferedPort<Bottle> targetPort;
 
-    inPort.open("/detector/image/in");  // give the port a name
-    outPort.open("/detector/image/out");
-    targetPort.open("/detector/target");
+    inPort.open("/objectDetector/image:i");  // give the port a name
+    outPort.open("/objectDetector/image:o");
+    targetPort.open("/objectDetector/target:o");
 
     while(true)
     {
@@ -72,9 +72,7 @@ int main() {
 
         //threshold on the size of the object we found
         if (count>(image->width()/20)*(image->height()/20))
-        {
             target.addInt(1);
-        }
         else
             target.addInt(0);    
 
