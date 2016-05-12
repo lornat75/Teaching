@@ -7,7 +7,7 @@
 using namespace std;
 using namespace yarp::os;
 
-int main(int argc, char *argv) {
+int main(int argc, const char **argv) {
     Network yarp;
     Port inPort;
     if (!inPort.open("/relay/in"))
