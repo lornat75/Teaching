@@ -4,13 +4,15 @@ project(yarp-basics)
 
 find_package(YARP REQUIRED)
 
+find_package(OpenCV REQUIRED)
+
 include_directories(${YARP_INCLUDE_DIRS})
 
 add_executable(move_ball move_ball.cpp)
 target_link_libraries(move_ball ${YARP_LIBRARIES})
 
 add_executable(object_detector object_detector.cpp)
-target_link_libraries(object_detector ${YARP_LIBRARIES})
+target_link_libraries(object_detector ${YARP_LIBRARIES} ${OpenCV_LIBS})
 
 add_executable(look_at look_at.cpp)
 target_link_libraries(look_at ${YARP_LIBRARIES})

@@ -6,15 +6,23 @@
 using namespace yarp::os;
 using namespace yarp::sig;
 
+#include "opencv2/imgproc/imgproc.hpp"
+
+using namespace cv;
+
 int main() {
     Network yarp;
 
     BufferedPort<ImageOf<PixelRgb> > inPort;  // make a port for reading images
     BufferedPort<ImageOf<PixelRgb> > outPort;
+    BufferedPort<ImageOf<PixelRgb> > outPortEdges;
     BufferedPort<Bottle> targetPort;
 
     inPort.open("/objectDetector/image:i");  // give the port a name
     outPort.open("/objectDetector/image:o");
+
+    outPortEdges.open("/objectDetector/edges:o");
+
     targetPort.open("/objectDetector/target:o");
 
     while(true)
@@ -28,12 +36,26 @@ int main() {
         ImageOf<PixelRgb> &outImage = outPort.prepare(); //get an output image
         outImage.resize(image->width(), image->height());
 
+        ImageOf<PixelRgb> &outEdges = outPortEdges.prepare();
+        outEdges.resize(image->width(), image->height());
+
         //printf("We got an image of size %dx%d\n", image->width(), image->height());
         double xMean = 0;
         double yMean = 0;
-        int count = 0;
+
+        Mat in_cv((IplImage *)image->getIplImage());
+        Mat im_gray, detected_edges;
+        cvtColor(in_cv,im_gray,CV_BGR2GRAY);
+        int kernel_size = 3;
+
+        blur(im_gray, detected_edges, Size(3,3) );
+        Canny( detected_edges, detected_edges, 100, 300, kernel_size );
+
+	int count = 0;
         for (int x=0; x<image->width(); x++) {
             for (int y=0; y<image->height(); y++) {
+
+
                 PixelRgb& pixel = image->pixel(x,y);
                 // very simple test for red
                 // make sure red level exceeds blue and green by a factor of 2
@@ -53,11 +75,15 @@ int main() {
                     count++;
 
                     outImage(x,y)=pixel;
+
                 }
                 else
                 {
-                    outImage(x,y)=PixelRgb(0,0,0);
+                   outImage(x,y)=PixelRgb(0,0,0);
                 }
+
+                Scalar intensity = detected_edges.at<uchar>(y, x);
+                outEdges(x,y)=PixelRgb(intensity.val[0], intensity.val[0], intensity.val[0]);
             }
         }
         if (count>0) {
@@ -78,6 +104,7 @@ int main() {
 
         targetPort.write();
 
+        outPortEdges.write();
         outPort.write();
     }
     return 0;
