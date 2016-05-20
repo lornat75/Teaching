@@ -56,7 +56,7 @@ int main() {
     // wait until motion is completed
     while(!done)
     {
-	pos->checkMotionDone(&done);
+        pos->checkMotionDone(&done);
         printf(".");
     }
     printf("\n");
