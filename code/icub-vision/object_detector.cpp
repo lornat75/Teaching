@@ -20,11 +20,11 @@ int main() {
 
     targetPort.open("/objectDetector/target:o");
 
-    while(true)
+    while (true)
     {
         ImageOf<PixelRgb> *image = inPort.read();  // read an image
 
-        if (image==NULL)
+        if (image == NULL)
             continue;
 
         // check we actually got something
@@ -34,19 +34,19 @@ int main() {
         //printf("We got an image of size %dx%d\n", image->width(), image->height());
         double xMean = 0;
         double yMean = 0;
-  
+
         int count = 0;
-        for (int x=0; x<image->width(); x++) {
-            for (int y=0; y<image->height(); y++) {
+        for (int x = 0; x < image->width(); x++) {
+            for (int y = 0; y < image->height(); y++) {
 
 
-                PixelRgb& pixel = image->pixel(x,y);
+                PixelRgb& pixel = image->pixel(x, y);
                 // very simple test for red
                 // make sure red level exceeds blue and green by a factor of 2
                 // plus some threshold
-                int v=pixel.b-pixel.r-pixel.g;
+                int v = pixel.b - pixel.r - pixel.g;
 
-                if (v>30)  //magic number
+                if (v > 30)  //magic number
                 {
                     // there's a blue pixel at (x,y)!
                     // let's find the average location of these pixels
@@ -58,31 +58,31 @@ int main() {
                     yMean += y;
                     count++;
 
-                    outImage(x,y)=pixel;
+                    outImage(x, y) = pixel;
 
                 }
                 else
                 {
-                   outImage(x,y)=PixelRgb(0,0,0);
+                    outImage(x, y) = PixelRgb(0, 0, 0);
                 }
 
-             }
+            }
         }
-        if (count>0) {
+        if (count > 0) {
             xMean /= count;
             yMean /= count;
         }
 
-        Bottle &target=targetPort.prepare();
+        Bottle &target = targetPort.prepare();
         target.clear();
         target.addDouble(xMean);
         target.addDouble(yMean);
 
         //threshold on the size of the object we found
-        if (count>(image->width()/20)*(image->height()/20))
+        if (count > (image->width() / 20)*(image->height() / 20))
             target.addInt(1);
         else
-            target.addInt(0);    
+            target.addInt(0);
 
         targetPort.write();
 

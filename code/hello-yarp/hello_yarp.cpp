@@ -4,11 +4,11 @@
 
 int main()
 {
-	while(true)
-	{
-		printf("hello yarp\n");
-		yarp::os::Time::delay(0.1);
-	}
-	
-	return 0;
+    while (true)
+    {
+        printf("hello yarp\n");
+        yarp::os::Time::delay(0.1);
+    }
+
+    return 0;
 }
