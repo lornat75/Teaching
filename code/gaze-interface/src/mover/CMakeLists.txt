@@ -1,12 +1,13 @@
-cmake_minimum_required(VERSION 2.8)
-set(PROJECTNAME mover)
-project(${PROJECTNAME})
+cmake_minimum_required(VERSION 2.8.9)
+project(mover)
 
 find_package(YARP)
 list(APPEND CMAKE_MODULE_PATH ${YARP_MODULE_PATH})
-find_package(GSL)
 
-include_directories(${GSL_INCLUDE_DIRS} ${YARP_INCLUDE_DIRS})
-add_executable(${PROJECTNAME} main.cpp)
-target_link_libraries(${PROJECTNAME} ${GSL_LIBRARIES} ${YARP_LIBRARIES})
-install(TARGETS ${PROJECTNAME} RUNTIME DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/../../bin)
+# import math symbols from standard cmath
+add_definitions(-D_USE_MATH_DEFINES)
+
+include_directories(${YARP_INCLUDE_DIRS})
+add_executable(${PROJECT_NAME} main.cpp)
+target_link_libraries(${PROJECT_NAME} ${YARP_LIBRARIES})
+install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/../../bin)

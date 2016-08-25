@@ -1,11 +1,11 @@
 
+#include <cmath>
+
 #include <yarp/os/Network.h>
 #include <yarp/os/RFModule.h>
 #include <yarp/os/Bottle.h>
 #include <yarp/os/RpcClient.h>
 #include <yarp/os/Time.h>
-
-#include <gsl/gsl_math.h>
 
 #include <iostream>
 #include <iomanip>

@@ -6,8 +6,7 @@
 // Author: Ugo Pattacini - <ugo.pattacini@iit.it>
 
 #include <cstdio>
-
-#include <gsl/gsl_math.h>
+#include <cmath>
 
 #include <yarp/os/Network.h>
 #include <yarp/os/RFModule.h>
