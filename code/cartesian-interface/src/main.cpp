@@ -54,13 +54,13 @@ public:
         // we suppose that:
         //
         // 1 - the iCub simulator is running
-        //     (launch iCub_SIM)
+        //     (launch: iCub_SIM)
         //
         // 2 - the cartesian server is running
-        //     (launch simCartesianControl)
+        //     (launch: yarprobotinterface --context simCartesianControl)
         //
         // 3 - the cartesian solver for the left arm is running too
-        //     (launch iKinCartesianSolver --context simCartesianControl --part left_arm)
+        //     (launch: iKinCartesianSolver --context simCartesianControl --part left_arm)
         //
         Property option("(device cartesiancontrollerclient)");
         option.put("remote","/icubSim/cartesianController/left_arm");
