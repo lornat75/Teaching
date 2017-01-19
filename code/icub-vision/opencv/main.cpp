@@ -5,7 +5,7 @@
 #include <yarp/sig/Vector.h>
 
 #include <cv.h>
-#include <highgui.h>
+#include "opencv2/imgproc/imgproc.hpp"
 
 #include <iostream>
 #include <algorithm>
@@ -46,7 +46,7 @@ public:
     {
         if (imageIn.getInputCount()>0)
         {
-            cv::Mat orig = (IplImage *) imageIn.read(true)->getIplImage();
+            cv::Mat orig = cv::cvarrToMat((IplImage *) imageIn.read(true)->getIplImage());
             ImageOf<PixelMono> &outImg = imageOut.prepare();
 
             cv::Mat blueOnly = blueFilter(orig);
@@ -91,7 +91,7 @@ public:
 
             IplImage tmp = blueOnly;
             outImg.resize(tmp.width, tmp.height);
-            cvCopyImage( &tmp, (IplImage *) outImg.getIplImage());
+            cvCopyparalle( &tmp, (IplImage *) outImg.getIplImage());
             imageOut.write();
 
             targetPort.write();
