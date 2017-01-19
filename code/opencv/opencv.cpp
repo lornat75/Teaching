@@ -48,7 +48,6 @@ int main() {
 
         outCircles = *image;
 
-
         // look for red pixels assuming you are looking for a red ball
         for (int x = 0; x < image->width(); x++) {
             for (int y = 0; y < image->height(); y++) {
@@ -63,11 +62,15 @@ int main() {
             }
         }
 
-        Mat in_cv((IplImage *)image->getIplImage());
+    
+        Mat in_cv = cvarrToMat((IplImage *)image->getIplImage());
+        
+        //Mat in_cv((IplImage *)image->getIplImage());
         cvtColor(in_cv, im_gray, CV_RGB2GRAY);
 
-        Mat detected_edges((IplImage *)outEdges.getIplImage());
-        Mat out_circles((IplImage *)outCircles.getIplImage());
+        Mat detected_edges = cvarrToMat((IplImage *)outEdges.getIplImage());
+        
+        Mat out_circles = cvarrToMat((IplImage *)outCircles.getIplImage());
 
         int kernel_size = 3;
         Canny(im_gray, detected_edges, CANNY_HIGH_THRESHOLD / 2, CANNY_HIGH_THRESHOLD, kernel_size);
