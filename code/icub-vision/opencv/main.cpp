@@ -20,7 +20,7 @@ using namespace yarp::sig;
 class MyModule:public RFModule
 {
     Port handlerPort; //a port to handle messages
-	BufferedPort<ImageOf<PixelRgb>  >   imageIn;
+    BufferedPort<ImageOf<PixelRgb>  >   imageIn;
     BufferedPort<Bottle>                targetPort;
     BufferedPort<ImageOf<PixelMono>  >  imageOut;
     cv::Mat                             color;
@@ -91,7 +91,7 @@ public:
 
             IplImage tmp = blueOnly;
             outImg.resize(tmp.width, tmp.height);
-            cvCopyparalle( &tmp, (IplImage *) outImg.getIplImage());
+            cvCopy( &tmp, (IplImage *) outImg.getIplImage());
             imageOut.write();
 
             targetPort.write();
