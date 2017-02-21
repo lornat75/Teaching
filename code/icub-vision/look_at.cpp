@@ -61,6 +61,9 @@ int main() {
     }
     printf("\n");
 
+    //wait until first data is received
+    Bottle *target = targetPort.read();
+
     for (int j = 0; j < jnts; j++)
         mode->setVelocityMode(j);
 

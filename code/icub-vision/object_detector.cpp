@@ -6,7 +6,7 @@
 using namespace yarp::os;
 using namespace yarp::sig;
 
-using namespace cv;
+
 
 int main() {
     Network yarp;
